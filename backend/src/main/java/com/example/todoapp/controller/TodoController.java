@@ -16,6 +16,7 @@ import com.example.todoapp.model.Todo;
 import com.example.todoapp.service.TodoService;
 
 @RestController
+@CrossOrigin("http://localhost:5173")
 @RequestMapping("/todos")
 public class TodoController {
 
@@ -27,31 +28,26 @@ public class TodoController {
     }
 
     @GetMapping
-    @CrossOrigin
     public List<Todo> getAllTodos() {
         return todoService.getAllTodos();
     }
 
     @PostMapping
-    @CrossOrigin
     public Todo saveTodo(@RequestBody Todo todo) {
         return todoService.saveTodo(todo);
     }
 
     @GetMapping("/{id}")
-    @CrossOrigin
     public Todo getTodoById(@PathVariable Long id) {
         return todoService.getTodoById(id);
     }
 
     @DeleteMapping("/{id}")
-    @CrossOrigin
     public void deleteTodoById(@PathVariable Long id) {
         todoService.deleteTodoById(id);
     }
 
     @PutMapping("/{id}")
-    @CrossOrigin
     public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todo) {
         Todo existingTodo = todoService.getTodoById(id);
         if (existingTodo != null) {
